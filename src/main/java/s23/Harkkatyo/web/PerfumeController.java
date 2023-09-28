@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import s23.Harkkatyo.model.DesignerRepository;
+import s23.Harkkatyo.model.Perfume;
 import s23.Harkkatyo.model.PerfumeRepository;
 import s23.Harkkatyo.model.PerfumerRepository;
 
@@ -33,5 +35,13 @@ public class PerfumeController {
 	public String perfumelist(Model model) {
 		model.addAttribute("perfumes", pRepository.findAll());
 		return "perfumelist";
+	}
+	
+	@GetMapping("addperfume")
+	public String addPerfume(Model model) {
+		model.addAttribute("perfume", new Perfume());
+		model.addAttribute("designers", dRepository.findAll());
+		model.addAttribute("perfumers", perRepository.findAll());
+		return "addperfume";
 	}
 }

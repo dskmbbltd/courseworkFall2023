@@ -18,7 +18,7 @@ public class Perfume {
 	private Long perfumeId;
 	private String perfumeName;
 	private int publicationYear;
-	private char genderSpec;
+	private String genderSpec;
 	
 	@ManyToOne
 	@JoinColumn(name="designerId")
@@ -87,11 +87,11 @@ public class Perfume {
 		this.publicationYear = publicationYear;
 	}
 
-	public char getGenderSpec() {
+	public String getGenderSpec() {
 		return genderSpec;
 	}
 
-	public void setGenderSpec(char genderSpec) {
+	public void setGenderSpec(String genderSpec) {
 		this.genderSpec = genderSpec;
 	}
 }

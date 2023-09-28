@@ -26,6 +26,14 @@ public class Perfumer {
 		this.perfumerName = perfumerName;
 	}
 	
+	public Long getPerfumerId() {
+		return perfumerId;
+	}
+
+	public void setPerfumerId(Long perfumerId) {
+		this.perfumerId = perfumerId;
+	}
+
 	public void setPerfumerName(String perfumerName) {
 		this.perfumerName = perfumerName;
 	}
