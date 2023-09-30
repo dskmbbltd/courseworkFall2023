@@ -3,10 +3,13 @@ package s23.Harkkatyo.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.validation.Valid;
 import s23.Harkkatyo.model.DesignerRepository;
 import s23.Harkkatyo.model.Perfume;
 import s23.Harkkatyo.model.PerfumeRepository;
@@ -46,8 +49,15 @@ public class PerfumeController {
 	}
 	
 	@PostMapping("save")
-	public String savePerfume(Perfume perfume) {
-		pRepository.save(perfume);
+	public String savePerfume(@Valid @ModelAttribute("perfume") Perfume eperfume, BindingResult bindingresult, Model model) {
+		if (bindingresult.hasErrors()) {
+			model.addAttribute("perfume", eperfume);
+			model.addAttribute("designers", dRepository.findAll());
+			model.addAttribute("perfumers", perRepository.findAll());
+			return "addperfume";
+		}
+		
+		pRepository.save(eperfume);
 		return "redirect:perfumelist";
 	}
 }

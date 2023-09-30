@@ -3,52 +3,61 @@
 <head>
     <title>Add a new perfume</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script th:inline="javascript">
-    function addOtherPerfumer() {
-    	document.getElementById("formi").innerHTML = '<div></div';
-    }
-    </script>
 </head>
 <body>
 	<h1>Add perfume</h1>
 	<div>
 		<form id="formi" th:object="${perfume}" th:action="@{save}" action="#" method="post">
-		  	<label for="perfumeName">Perfume Name</label>
+		  	<label for="perfumeName">Perfume Name</label><br>
 			<input type="text" id="perfumeName" th:field="*{perfumeName}" />
+			<div th:if="${#fields.hasErrors('perfumeName')}" th:errors="*{perfumeName}">Error</div>
 			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="genderspec">Intended for</label>
-			<input type="text" id="genderSpec" th:field="*{genderSpec}" />
+			
+			<label for="genderSpec">Intended for:</label><br>
+			<select id="genderSpec" th:field="*{genderSpec}" class="form-control">
+			<option value="U">U</option>
+			<option value="M">M</option>
+			<option value="F">F</option>
+			</select>						
+			<div th:if="${#fields.hasErrors('genderSpec')}" th:errors="*{genderSpec}">Error</div>
 			<div style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="publicationYear">Year of publication</label>
+			
+		  	<label for="publicationYear">Year of publication</label><br>
 			<input type="number" min="1900" max="2999" step="1" id="publicationYear" th:field="*{publicationYear}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="designers">Designer</label>
+			
+			<label for="designers">Designer</label><br>
 			 <select id="designlist" th:field="*{designer}" class="form-control">
        			<option th:each="designer: ${designers}" th:value="${designer.designerId}" th:text="${designer.designerName}"></option>
     		</select>
+    		<div th:if="${#fields.hasErrors('designer')}" th:errors="*{designer}">Error</div>
     		<div style="clear: both; display: block; height: 10px;"></div>
-    		<!-- Useita dropdowneja/muu ratkaisu? -->	
-
-    		<label for="perfumers">Perfumer</label>
+    		
+			<h3>Add up to four perfumers on initial addition</h3>
+    		<label for="perfumers">Perfumer 1</label>
 			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
        			<option value=""></option>
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
-    		<label for="perfumers">Perfumer</label>
+    		
+    		<label for="perfumers">Perfumer 2</label>
 			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
        			<option value=""></option>
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
-    		<label for="perfumers">Perfumer</label>
+    		
+    		<label for="perfumers">Perfumer 3</label>
 			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
        			<option value=""></option>
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
-    		<label for="perfumers">Perfumer</label>
+    		
+    		<label for="perfumers">Perfumer 4</label>
 			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
        			<option value=""></option>
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
+    		<div th:if="${#fields.hasErrors('perfumers')}" th:errors="*{perfumers}">Error</div>
     		
 			<input type="submit" value="Save"></input>
 		</form>
