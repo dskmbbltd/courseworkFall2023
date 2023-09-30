@@ -33,7 +33,7 @@ public class PerfumeController {
 	
 	@GetMapping("perfumelist")
 	public String perfumelist(Model model) {
-		model.addAttribute("perfumes", pRepository.findAll());
+		model.addAttribute("perfumes", pRepository.findByOrderByPerfumeNameAsc());
 		return "perfumelist";
 	}
 	

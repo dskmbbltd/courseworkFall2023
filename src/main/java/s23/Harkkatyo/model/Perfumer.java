@@ -7,12 +7,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Perfumer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long perfumerId;
+	
+	@NotEmpty(message = "Perfumer name must be provided")
+	@Size( min = 1, max = 200)
 	private String perfumerName;
 	
 	public Perfumer() {

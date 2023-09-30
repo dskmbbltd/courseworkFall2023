@@ -10,20 +10,27 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Perfume {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long perfumeId;
+	@NotEmpty(message = "Name must be provided")
+	@Size( min = 1, max = 200)
 	private String perfumeName;
+	// no validation (info not always available)
 	private int publicationYear;
+	@Size( min = 1, max = 1)
 	private String genderSpec;
 	
 	@ManyToOne
 	@JoinColumn(name="designerId")
 	private Designer designer;
-	
 	
 	@ManyToMany
 	@JoinTable(
