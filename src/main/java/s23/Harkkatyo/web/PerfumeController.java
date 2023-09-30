@@ -44,4 +44,10 @@ public class PerfumeController {
 		model.addAttribute("perfumers", perRepository.findAll());
 		return "addperfume";
 	}
+	
+	@PostMapping("save")
+	public String savePerfume(Perfume perfume) {
+		pRepository.save(perfume);
+		return "redirect:perfumelist";
+	}
 }

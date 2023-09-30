@@ -3,11 +3,16 @@
 <head>
     <title>Add a new perfume</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script th:inline="javascript">
+    function addOtherPerfumer() {
+    	document.getElementById("formi").innerHTML = '<div></div';
+    }
+    </script>
 </head>
 <body>
 	<h1>Add perfume</h1>
 	<div>
-		<form th:object="${perfume}" th:action="@{save}" action="#" method="post">
+		<form id="formi" th:object="${perfume}" th:action="@{save}" action="#" method="post">
 		  	<label for="perfumeName">Perfume Name</label>
 			<input type="text" id="perfumeName" th:field="*{perfumeName}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
@@ -21,12 +26,30 @@
 			 <select id="designlist" th:field="*{designer}" class="form-control">
        			<option th:each="designer: ${designers}" th:value="${designer.designerId}" th:text="${designer.designerName}"></option>
     		</select>
-    		<!-- Useita dropdowneja/muu ratkaisu? -->
+    		<div style="clear: both; display: block; height: 10px;"></div>
+    		<!-- Useita dropdowneja/muu ratkaisu? -->	
+
     		<label for="perfumers">Perfumer</label>
 			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
+       			<option value=""></option>
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
-			
+    		<label for="perfumers">Perfumer</label>
+			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
+       			<option value=""></option>
+       			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
+    		</select>
+    		<label for="perfumers">Perfumer</label>
+			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
+       			<option value=""></option>
+       			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
+    		</select>
+    		<label for="perfumers">Perfumer</label>
+			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
+       			<option value=""></option>
+       			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
+    		</select>
+    		
 			<input type="submit" value="Save"></input>
 		</form>
 	</div>
