@@ -23,8 +23,9 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 		  	<label for="publicationYear">Year of publication</label><br>
-			<input type="number" min="1900" max="2999" step="1" id="publicationYear" th:field="*{publicationYear}" />
+			<input type="number" step="1" id="publicationYear" th:field="*{publicationYear}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			<div th:if="${#fields.hasErrors('publicationYear')}" th:errors="*{publicationYear}">Error</div>
 			
 			<label for="designers">Designer</label><br>
 			 <select id="designlist" th:field="*{designer}" class="form-control">

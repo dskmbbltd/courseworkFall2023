@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.util.List;
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.ArrayList;
 
 
@@ -35,23 +37,22 @@ public class HarkkatyoApplication {
 			dRepository.save(new Designer ("Acqua di Parma"));
 			
 			log.info("adding new perfumers");
-			perRepository.save(new Perfumer ("Test"));
-			List<Perfumer> newList = new ArrayList<Perfumer>();
-			newList.add(perRepository.findByPerfumerName("Test"));
+			Perfumer test = perRepository.save(new Perfumer ("Test"));
 			
+			Perfumer Alpha = perRepository.save(new Perfumer ("A"));
 			
+			Perfumer Beta = perRepository.save(new Perfumer ("B"));
 			
-			perRepository.save(new Perfumer ("A"));
-			perRepository.save(new Perfumer ("B"));
-			List<Perfumer> twoList = new ArrayList<Perfumer>();
-			twoList.add(perRepository.findByPerfumerName("A"));
-			twoList.add(perRepository.findByPerfumerName("B"));
+			LinkedHashSet<Perfumer> a = new LinkedHashSet<>();
+			a.add(Alpha);
+			a.add(Beta);
 			
-			
+			LinkedHashSet<Perfumer> b = new LinkedHashSet<>();
+			b.add(test);
 			
 			log.info("adding new perfumes");
-			pRepository.save(new Perfume("Luna Rossa", dRepository.findByDesignerName("Prada").get(0),newList));
-			pRepository.save(new Perfume("Ambra", dRepository.findByDesignerName("Acqua di Parma").get(0),twoList));
+			pRepository.save(new Perfume("Luna Rossa", dRepository.findByDesignerName("Prada").get(0), a));
+			pRepository.save(new Perfume("Ambra", dRepository.findByDesignerName("Acqua di Parma").get(0), b));
 			
 			log.info("fetch all perfumes");
 			for (Perfume perfume : pRepository.findAll()) {

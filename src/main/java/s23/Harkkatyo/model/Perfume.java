@@ -1,6 +1,8 @@
 package s23.Harkkatyo.model;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderBy;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -23,21 +26,22 @@ public class Perfume {
 	@NotEmpty(message = "Name must be provided")
 	@Size( min = 1, max = 200)
 	private String perfumeName;
-	// no validation (info not always available)
-	private int publicationYear;
+	@Min(1900)
+	private int publicationYear = 1900;
 	@Size( min = 1, max = 1)
-	private String genderSpec;
+	private String genderSpec = "X";
 	
 	@ManyToOne
 	@JoinColumn(name="designerId")
 	private Designer designer;
 	
 	@ManyToMany
+	@OrderBy("perfumerName ASC")
 	@JoinTable(
 	name = "perfume_perfumer", 
 	joinColumns = @JoinColumn(name = "perfumeId"), 
 	inverseJoinColumns = @JoinColumn(name = "perfumerId"))
-	private List<Perfumer> perfumers;
+	private Set<Perfumer> perfumers = new LinkedHashSet<>();
 	
 	public Perfume() {
 		
@@ -48,12 +52,13 @@ public class Perfume {
 		this.designer = designer;
 	}
 
-	public Perfume(String perfumeName, Designer designer, List<Perfumer> perfumers) {
+	public Perfume(String perfumeName, Designer designer, LinkedHashSet<Perfumer> perfumers) {
 		this.perfumeName = perfumeName;
 		this.designer = designer;
 		this.perfumers = perfumers;
 	}
 	
+
 	public String getPerfumeName() {
 		return perfumeName;
 	}
@@ -78,11 +83,11 @@ public class Perfume {
 		this.designer = designer;
 	}
 	
-	public List<Perfumer> getPerfumers() {
+	public Set<Perfumer> getPerfumers() {
 		return perfumers;
 	}
 	
-	public void setPerfumers(List<Perfumer> perfumers) {
+	public void setPerfumers(LinkedHashSet<Perfumer> perfumers) {
 		this.perfumers = perfumers;
 	}
 

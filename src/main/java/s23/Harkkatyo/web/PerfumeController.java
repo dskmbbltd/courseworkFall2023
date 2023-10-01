@@ -49,15 +49,15 @@ public class PerfumeController {
 	}
 	
 	@PostMapping("save")
-	public String savePerfume(@Valid @ModelAttribute("perfume") Perfume eperfume, BindingResult bindingresult, Model model) {
+	public String savePerfume(@Valid @ModelAttribute("perfume") Perfume perfume, BindingResult bindingresult, Model model) {
 		if (bindingresult.hasErrors()) {
-			model.addAttribute("perfume", eperfume);
+			model.addAttribute("perfume", perfume);
 			model.addAttribute("designers", dRepository.findAll());
 			model.addAttribute("perfumers", perRepository.findAll());
 			return "addperfume";
 		}
 		
-		pRepository.save(eperfume);
+		pRepository.save(perfume);
 		return "redirect:perfumelist";
 	}
 }

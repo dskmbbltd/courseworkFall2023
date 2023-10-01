@@ -11,6 +11,8 @@
 		    <th>Perfume Name</th>
 		    <th>Designer Name</th>
 		    <th>Perfumer(s)</th>
+		    <th>Publication Year</th>
+		    <th>Intended for</th>
 		</tr>  
     	<tr th:each = "perfume : ${perfumes}">
     		<td th:text="${perfume.perfumeName}"></td>
@@ -18,6 +20,8 @@
     		<td><span th:if="${perfume.getPerfumers} != null" 
           th:each="perfumerList : ${perfume.getPerfumers}" 
           th:text="${perfumerList.perfumerName} + ' '"></span></td>
+          <td th:text="${perfume.publicationYear}"></td>
+          <td th:text="${perfume.genderSpec}"></td>
     	</tr>
      </table>
      <a href="/addperfume">Add Perfume</a>    	    	

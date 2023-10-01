@@ -1,6 +1,7 @@
 package s23.Harkkatyo.model;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Perfumer {
 	}
 	
 	@ManyToMany(mappedBy = "perfumers")
-	List<Perfume> perfumes;
+	Set<Perfume> perfumes;
 	
 	public Perfumer(String perfumerName) {
 		this.perfumerName = perfumerName;
@@ -47,11 +48,11 @@ public class Perfumer {
 		return perfumerName;
 	}
 	
-	public List<Perfume> getPerfumes() {
+	public Set<Perfume> getPerfumes() {
 		return perfumes;
 	}
 	
-	public void setPerfumes(List<Perfume> perfumes) {
+	public void setPerfumes(Set<Perfume> perfumes) {
 		this.perfumes = perfumes;
 	}
 }
