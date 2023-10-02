@@ -1,29 +1,31 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Perfumes</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Perfumes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 	<h1>Perfumes</h1>
-    <table>
+	<table>
 		<tr>
-		    <th>Perfume Name</th>
-		    <th>Designer Name</th>
-		    <th>Perfumer(s)</th>
-		    <th>Publication Year</th>
-		    <th>Intended for</th>
-		</tr>  
-    	<tr th:each = "perfume : ${perfumes}">
-    		<td th:text="${perfume.perfumeName}"></td>
-    		<td th:text="${perfume.designer.designerName}"></td>
-    		<td><span th:if="${perfume.getPerfumers} != null" 
-          th:each="perfumerList : ${perfume.getPerfumers}" 
-          th:text="${perfumerList.perfumerName} + ' '"></span></td>
-          <td th:text="${perfume.publicationYear}"></td>
-          <td th:text="${perfume.genderSpec}"></td>
-    	</tr>
-     </table>
-     <a href="/addperfume">Add Perfume</a>    	    	
+			<th>Perfume Name</th>
+			<th>Designer Name</th>
+			<th>Perfumer(s)</th>
+			<th>Publication Year</th>
+			<th>Intended for</th>
+		</tr>
+		<tr th:each="perfume : ${perfumes}">
+			<td th:text="${perfume.perfumeName}"></td>
+			<td th:text="${perfume.designer.designerName}"></td>
+			<td><span th:if="${perfume.getPerfumers} != null"
+				th:each="perfumerList : ${perfume.getPerfumers}"
+				th:text="${perfumerList.perfumerName} + ' '"></span></td>
+			<td th:text="${perfume.publicationYear}"></td>
+			<td th:text="${perfume.genderSpec}"></td>
+			<td><a th:href="@{/delete/{id}(id=${perfume.perfumeId})}">Delete</a></td>
+			<td><a th:href="@{/edit/{id}(id=${perfume.perfumeId})}">Edit</a></td>
+		</tr>
+	</table>
+	<a href="/addperfume">Add Perfume</a>
 </body>
 </html>

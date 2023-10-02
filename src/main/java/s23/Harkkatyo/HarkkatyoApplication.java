@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.util.List;
 import java.util.Set;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.ArrayList;
 
 
@@ -43,16 +43,9 @@ public class HarkkatyoApplication {
 			
 			Perfumer Beta = perRepository.save(new Perfumer ("B"));
 			
-			LinkedHashSet<Perfumer> a = new LinkedHashSet<>();
-			a.add(Alpha);
-			a.add(Beta);
-			
-			LinkedHashSet<Perfumer> b = new LinkedHashSet<>();
-			b.add(test);
-			
 			log.info("adding new perfumes");
-			pRepository.save(new Perfume("Luna Rossa", dRepository.findByDesignerName("Prada").get(0), a));
-			pRepository.save(new Perfume("Ambra", dRepository.findByDesignerName("Acqua di Parma").get(0), b));
+			pRepository.save(new Perfume("Luna Rossa", dRepository.findByDesignerName("Prada").get(0)));
+			pRepository.save(new Perfume("Ambra", dRepository.findByDesignerName("Acqua di Parma").get(0)));
 			
 			log.info("fetch all perfumes");
 			for (Perfume perfume : pRepository.findAll()) {

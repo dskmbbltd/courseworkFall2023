@@ -6,7 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.validation.Valid;
@@ -40,6 +43,8 @@ public class PerfumeController {
 		return "perfumelist";
 	}
 	
+	
+	//ADDITION
 	@GetMapping("addperfume")
 	public String addPerfume(Model model) {
 		model.addAttribute("perfume", new Perfume());
@@ -59,5 +64,20 @@ public class PerfumeController {
 		
 		pRepository.save(perfume);
 		return "redirect:perfumelist";
+	}
+	
+	//EDIT
+	@GetMapping(value = "/edit/{perfumeId}")
+    public String editPerfume(@PathVariable("perfumeId") Long perfumeId, Model model) {
+    	model.addAttribute("perfume", pRepository.findById(perfumeId));
+    	model.addAttribute("designers", dRepository.findAll());
+    	model.addAttribute("perfumers", perRepository.findAll());
+    	return "editperfume";
+    }
+	
+	@PostMapping(value = "/edit/saveEditedPerfume")
+	public String savePerfume(Perfume perfume) {
+		pRepository.save(perfume);
+		return "redirect:../perfumelist";
 	}
 }

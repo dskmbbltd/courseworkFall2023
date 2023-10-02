@@ -1,5 +1,6 @@
 package s23.Harkkatyo.model;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class Perfume {
 	@Min(1900)
 	private int publicationYear = 1900;
 	@Size( min = 1, max = 1)
-	private String genderSpec = "X";
+	private String genderSpec = "U";
 	
 	@ManyToOne
 	@JoinColumn(name="designerId")
@@ -41,7 +42,7 @@ public class Perfume {
 	name = "perfume_perfumer", 
 	joinColumns = @JoinColumn(name = "perfumeId"), 
 	inverseJoinColumns = @JoinColumn(name = "perfumerId"))
-	private Set<Perfumer> perfumers = new LinkedHashSet<>();
+	private Set<Perfumer> perfumers = new HashSet<>();
 	
 	public Perfume() {
 		
@@ -52,7 +53,7 @@ public class Perfume {
 		this.designer = designer;
 	}
 
-	public Perfume(String perfumeName, Designer designer, LinkedHashSet<Perfumer> perfumers) {
+	public Perfume(String perfumeName, Designer designer, Set<Perfumer> perfumers) {
 		this.perfumeName = perfumeName;
 		this.designer = designer;
 		this.perfumers = perfumers;
@@ -87,7 +88,7 @@ public class Perfume {
 		return perfumers;
 	}
 	
-	public void setPerfumers(LinkedHashSet<Perfumer> perfumers) {
+	public void setPerfumers(Set<Perfumer> perfumers) {
 		this.perfumers = perfumers;
 	}
 
