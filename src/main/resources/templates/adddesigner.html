@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add a new designer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Add designer</h1>
+	<div>
+	<form id="formi" th:object="${designer}" th:action="@{saveDesigner}" action="#" method="post">
+		  	<label for="designerName">Designer Name</label><br>
+			<input type="text" id="designerName" th:field="*{designerName}" />
+			<div th:if="${#fields.hasErrors('designerName')}" th:errors="*{designerName}">Error</div>
+			<input type="submit" value="Save"></input>
+			</form>
+	</div>

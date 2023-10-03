@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Designers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Designers</h1>
+	<table>
+		<tr>
+			<th>Designer Name</th>
+		</tr>
+		<tr th:each="designer : ${designers}">
+			<td th:text="${designer.designerName}"></td>
+			<td><a th:href="@{/deletedesigner/{id}(id=${designer.designerId})}">Delete</a></td>
+			<td><a th:href="@{/editdesigner/{id}(id=${designer.designerId})}">Edit</a></td>
+		</tr>
+	</table>
+	<a href="/perfumelist">View all perfumes</a>
+	<a href="/addperfume">Add Perfume</a>
+	<a href="/adddesigner">Add a new designer</a>
+</body>
+</html>

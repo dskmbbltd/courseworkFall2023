@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Designer {
 	private Long designerId;
 	@NotEmpty(message = "Designer name must be provided")
 	@Size( min = 1, max = 200)
+	@Column(unique=true)
 	private String designerName;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="designer")
