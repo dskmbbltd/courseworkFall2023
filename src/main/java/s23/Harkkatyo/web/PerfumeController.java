@@ -1,5 +1,7 @@
 package s23.Harkkatyo.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,7 +69,10 @@ public class PerfumeController {
 	//EDIT
 	@GetMapping(value = "/edit/{perfumeId}")
     public String editPerfume(@PathVariable("perfumeId") Long perfumeId, Model model) {
-    	model.addAttribute("perfume", pRepository.findById(perfumeId));
+		model.addAttribute("perfume", pRepository.findById(perfumeId));
+		
+		//get associated perfumers
+    	model.addAttribute("existingPerfumers", pRepository.findById(perfumeId).orElseThrow().getPerfumers());
     	model.addAttribute("designers", dRepository.findAll());
     	model.addAttribute("perfumers", perRepository.findAll());
     	return "editperfume";

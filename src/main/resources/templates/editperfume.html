@@ -6,6 +6,8 @@
 </head>
 <body>
 	<h1>Edit perfume</h1>
+	
+	
 	<div>
 		<form id="formi" th:object="${perfume}" th:action="@{saveEditedPerfume}" action="#" method="post">
 			<input type="number" id="perfumeId" th:field="*{perfumeId}" readonly/>
@@ -13,7 +15,6 @@
 			<input type="text" id="perfumeName" th:field="*{perfumeName}" />
 			<div th:if="${#fields.hasErrors('perfumeName')}" th:errors="*{perfumeName}">Error</div>
 			<div style="clear: both; display: block; height: 10px;"></div>
-			
 			<label for="genderSpec">Intended for:</label><br>
 			<select id="genderSpec" th:field="*{genderSpec}" class="form-control">
 			<option value="U">U</option>
@@ -35,7 +36,12 @@
     		<div th:if="${#fields.hasErrors('designer')}" th:errors="*{designer}">Error</div>
     		<div style="clear: both; display: block; height: 10px;"></div>
     		
+			
+			<h4>Currently listed perfumers:</h4>
+			<p th:each="perfumer: ${existingPerfumers}" th:text="${perfumer.perfumerName}"></p>
+			
 			<h3>Edit perfumers, duplicate perfumers will be ignored</h3>
+			
     		<label for="perfumers">Perfumer 1</label>
 			 	<select id="perfumerlist" th:field="*{perfumers}" class="form-control">
 			 

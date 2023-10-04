@@ -11,7 +11,8 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.ArrayList;
 
-
+import s23.Harkkatyo.model.AppUser;
+import s23.Harkkatyo.model.AppUserRepository;
 import s23.Harkkatyo.model.Designer;
 import s23.Harkkatyo.model.DesignerRepository;
 import s23.Harkkatyo.model.Perfume;
@@ -30,18 +31,25 @@ public class HarkkatyoApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner perfumeTestData(PerfumeRepository pRepository, DesignerRepository dRepository, PerfumerRepository perRepository) {
+	public CommandLineRunner perfumeTestData(PerfumeRepository pRepository, DesignerRepository dRepository, PerfumerRepository perRepository, AppUserRepository userRepository) {
 		return (args) -> {
 			log.info("adding new designers");
 			dRepository.save(new Designer ("Prada"));
 			dRepository.save(new Designer ("Acqua di Parma"));
 			
 			log.info("adding new perfumers");
-			Perfumer test = perRepository.save(new Perfumer ("Test"));
+			Perfumer perf1 = perRepository.save(new Perfumer ("Daniela Andrier"));
 			
-			Perfumer Alpha = perRepository.save(new Perfumer ("A"));
+			Perfumer perf2 = perRepository.save(new Perfumer ("François Demachy"));
 			
-			Perfumer Beta = perRepository.save(new Perfumer ("B"));
+			Perfumer Beta = perRepository.save(new Perfumer ("Beta"));
+			
+			
+			AppUser user1 = new AppUser("user","$2a$10$OFBvfxQTiXtNR9RUT/6PXO7m6iuHAT9S134eHFTYB5xcMLYPAUyFO", "USER");
+			AppUser user2 = new AppUser("admin","$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
+			
 			
 			log.info("adding new perfumes");
 			pRepository.save(new Perfume("Luna Rossa", dRepository.findByDesignerName("Prada").get(0)));

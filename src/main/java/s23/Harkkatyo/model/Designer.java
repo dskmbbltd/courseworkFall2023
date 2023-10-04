@@ -24,7 +24,7 @@ public class Designer {
 	@Column(unique=true)
 	private String designerName;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="designer")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="designer")
 	@JsonIgnore
 	private List<Perfume> perfumes;
 	
