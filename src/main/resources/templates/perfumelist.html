@@ -1,15 +1,25 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <title>Perfumes</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<form th:action="@{/logout}" method=
-"post">
-<input type="submit" value="Sign Out"/>
-</form>
+
+
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+
+	<a href="/designerlist">View all designers</a>
+	<a href="/perfumerlist">View all perfumers</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/addperfume">Add
+		Perfume</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/adddesigner">Add a
+		new designer</a>
+
 
 	<h1>Perfumes</h1>
 	<table>
@@ -23,17 +33,18 @@
 		<tr th:each="perfume : ${perfumes}">
 			<td th:text="${perfume.perfumeName}"></td>
 			<td th:text="${perfume.designer.designerName}"></td>
+			<!--  Populate all perfumers -->
 			<td><span th:if="${perfume.getPerfumers} != null"
 				th:each="perfumerList : ${perfume.getPerfumers}"
 				th:utext="${perfumerList.perfumerName} + '<br>'"></span></td>
 			<td th:text="${perfume.publicationYear}"></td>
 			<td th:text="${perfume.genderSpec}"></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${perfume.perfumeId})}">Delete</a></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${perfume.perfumeId})}">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/delete/{id}(id=${perfume.perfumeId})}">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/edit/{id}(id=${perfume.perfumeId})}">Edit</a></td>
 		</tr>
 	</table>
-	<a href="/designerlist">View all designers</a>
-	<a href="/addperfume">Add Perfume</a>
-	<a href="/adddesigner">Add a new designer</a>
+
 </body>
 </html>

@@ -32,6 +32,7 @@ public class Perfume {
 	@Size( min = 1, max = 1)
 	private String genderSpec = "U";
 	
+	//SUHTEET
 	@ManyToOne
 	@JoinColumn(name="designerId")
 	private Designer designer;
@@ -42,8 +43,9 @@ public class Perfume {
 	name = "perfume_perfumer", 
 	joinColumns = @JoinColumn(name = "perfumeId"), 
 	inverseJoinColumns = @JoinColumn(name = "perfumerId"))
-	private Set<Perfumer> perfumers = new HashSet<>();
+	private Set<Perfumer> perfumers;
 	
+	//CONSTR
 	public Perfume() {
 		
 	}
@@ -59,7 +61,7 @@ public class Perfume {
 		this.perfumers = perfumers;
 	}
 	
-
+	//GET SET
 	public String getPerfumeName() {
 		return perfumeName;
 	}

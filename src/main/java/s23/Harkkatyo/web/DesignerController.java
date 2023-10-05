@@ -70,6 +70,8 @@ public class DesignerController {
 	
 	@PostMapping(value = "/editdesigner/saveEditedDesigner")
 	public String saveEditedDesigner(@Valid Designer designer, BindingResult bindingresult, Model model) {
+		
+		// UNIQUE NAME CONSTRAINT ERROR
 		List<Designer> optDes = dRepository.findByDesignerName(designer.getDesignerName());
 		if (!optDes.isEmpty()) {
 			bindingresult.rejectValue("designerName", "error.designerName", "Designer name already exists in the database. Did you edit the name?");

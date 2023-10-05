@@ -8,8 +8,8 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+    @Column(name = "userid", nullable = false, updatable = false)
+    private Long userid;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -20,6 +20,7 @@ public class AppUser {
     @Column(name = "role", nullable = false)
     private String role;
     
+    //CONSTR
     public AppUser() {
     }
 
@@ -29,13 +30,15 @@ public class AppUser {
 		this.passwordHash = passwordHash;
 		this.role = role;
 	}
-
-	public Long getId() {
-		return id;
+	
+	
+	//GET SET
+	public Long getuserId() {
+		return userid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setuserId(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getUsername() {

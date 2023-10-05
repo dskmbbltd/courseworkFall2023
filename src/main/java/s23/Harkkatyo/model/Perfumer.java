@@ -1,7 +1,5 @@
 package s23.Harkkatyo.model;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +28,7 @@ public class Perfumer {
 	
 	@ManyToMany(mappedBy = "perfumers")
 	@JsonIgnore
-	Set<Perfume> perfumes;
+	private Set<Perfume> perfumes;
 	
 	public Perfumer(String perfumerName) {
 		this.perfumerName = perfumerName;
