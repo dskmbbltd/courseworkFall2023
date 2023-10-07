@@ -110,7 +110,6 @@ public class PerfumeController {
 			log.info(x.toString());
 			existing.addPerfumer(x);
 		}
-		;
 
 		pRepository.save(existing);
 		return "redirect:../perfumelist";
