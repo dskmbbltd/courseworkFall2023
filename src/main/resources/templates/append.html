@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit existing perfume</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Edit perfume</h1>
+	
+	
+	<div>
+		<form id="formi" th:object="${perfume}" th:action="@{appendPerfumer}" action="#" method="post">
+			<input type="number" id="perfumeId" th:field="*{perfumeId}" readonly/><br>
+		  	<label for="perfumeName">Perfume Name</label><br>
+			<input type="text" id="perfumeName" th:field="*{perfumeName}" readonly/>
+			<div th:if="${#fields.hasErrors('perfumeName')}" th:errors="*{perfumeName}">Error</div>
+			<select id="genderSpec" th:field="*{genderSpec}" class="form-control" hidden="hidden">
+			<option value="U">U</option>
+			<option value="M">M</option>
+			<option value="F">F</option>
+			</select>						
+			
+			
+		  	
+			<input type="number" step="1" id="publicationYear" th:field="*{publicationYear}" hidden/>
+			<div th:if="${#fields.hasErrors('publicationYear')}" th:errors="*{publicationYear}">Error</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="designers">Designer</label><br>
+			 <select id="designlist" th:field="*{designer}" class="form-control" readonly>
+       			<option th:each="designer: ${designers}" th:value="${designer.designerId}" th:text="${designer.designerName}"></option>
+    		</select>
+    		<div th:if="${#fields.hasErrors('designer')}" th:errors="*{designer}">Error</div>
+    		<div style="clear: both; display: block; height: 10px;"></div>
+    		
+			
+			<h4>Currently listed perfumers:</h4>
+			<p id="existingPerfumers" th:each="perfumer: ${existingPerfumers}" th:text="${perfumer.perfumerName}"></p>
+			
+			
+			<h3>Add a perfumer</h3>
+			
+			<!-- Show dropdowns for perfumers -->
+    		<label for="perfumers">Perfumer 1</label>
+			 	<select id="perfumerlist1" th:field="*{perfumers}" class="form-control">
+			 
+       			<option value=""></option>
+       			
+       			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
+    		</select>
+    		<input type="submit" value="Save"></input>
+		</form>
+		
+	</div>
+</body>
+</html>

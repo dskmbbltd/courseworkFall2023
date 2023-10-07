@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,13 +38,13 @@ public class Perfume {
 	@JoinColumn(name="designerId")
 	private Designer designer;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@OrderBy("perfumerName ASC")
 	@JoinTable(
 	name = "perfume_perfumer", 
 	joinColumns = @JoinColumn(name = "perfumeId"), 
 	inverseJoinColumns = @JoinColumn(name = "perfumerId"))
-	private Set<Perfumer> perfumers;
+	private Set<Perfumer> perfumers = new HashSet<>();
 	
 	//CONSTR
 	public Perfume() {
@@ -60,6 +61,11 @@ public class Perfume {
 		this.designer = designer;
 		this.perfumers = perfumers;
 	}
+	
+    public void addPerfumer(Perfumer perfumer) {
+        perfumers.add(perfumer);
+        perfumer.getPerfumes().add(this);
+    }
 	
 	//GET SET
 	public String getPerfumeName() {

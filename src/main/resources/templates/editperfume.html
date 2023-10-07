@@ -38,20 +38,20 @@
     		
 			
 			<h4>Currently listed perfumers:</h4>
-			<p th:each="perfumer: ${existingPerfumers}" th:text="${perfumer.perfumerName}"></p>
+			<p id="existingPerfumers" th:each="perfumer: ${existingPerfumers}" th:text="${perfumer.perfumerName}"></p>
 			
 			
 			<h3>Edit perfumers, duplicate perfumers will be ignored</h3>
 			
 			<!-- Show dropdowns for perfumers -->
     		<label for="perfumers">Perfumer 1</label>
-			 	<select id="perfumerlist" th:field="*{perfumers}" class="form-control">
+			 	<select id="perfumerlist1" th:field="*{perfumers}" class="form-control">
 			 
        			<option value=""></option>
        			
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
-    		
+    		 
     		<label for="perfumers">Perfumer 2</label>
 			 <select id="perfumerlist" th:field="*{perfumers}" class="form-control">
        			<option value=""></option>
@@ -70,7 +70,7 @@
        			<option th:each="perfumers: ${perfumers}" th:value="${perfumers.perfumerId}" th:text="${perfumers.perfumerName}"></option>
     		</select>
     		<div th:if="${#fields.hasErrors('perfumers')}" th:errors="*{perfumers}">Error</div>
-    		
+    		 
 			<input type="submit" value="Save"></input>
 		</form>
 		

@@ -1,9 +1,11 @@
 package s23.Harkkatyo.model;
 
 import java.util.Set;
+import java.util.HashSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,9 +28,9 @@ public class Perfumer {
 		
 	}
 	
-	@ManyToMany(mappedBy = "perfumers")
+	@ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "perfumers")
 	@JsonIgnore
-	private Set<Perfume> perfumes;
+	private Set<Perfume> perfumes = new HashSet<>();
 	
 	public Perfumer(String perfumerName) {
 		this.perfumerName = perfumerName;
@@ -57,4 +59,8 @@ public class Perfumer {
 	public void setPerfumes(Set<Perfume> perfumes) {
 		this.perfumes = perfumes;
 	}
-}
+	
+	public String toString() {
+		return (this.perfumerName);
+	}
+	}
