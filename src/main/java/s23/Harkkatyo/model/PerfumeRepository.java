@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface PerfumeRepository extends CrudRepository<Perfume, Long> {
 
 	List<Perfume> findByOrderByPerfumeNameAsc();
+	List<Perfume> findByPerfumeName(String perfumeName);
 }

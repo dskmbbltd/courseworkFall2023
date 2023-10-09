@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit perfumer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Edit perfumer name</h1>
+	<div>
+	<form id="formi" th:object="${perfumer}" th:action="@{saveEditedPerfumer}" action="#" method="post">
+			<input type="number" id="perfumerId" th:field="*{perfumerId}" readonly/><br>
+		  	<label for="perfumerName">perfumer Name</label><br>
+			<input type="text" id="perfumerName" th:field="*{perfumerName}" />
+			<div th:if="${#fields.hasErrors('perfumerName')}" th:errors="*{perfumerName}">Error</div>
+			<input type="submit" value="Save"></input>
+			</form>
+	</div>
+	<br>
+	<a href="/perfumelist">View all perfumes</a>
+	<a href="/perfumerlist">View all perfumers</a>
+	<a href="/designerlist">View all designers</a>
+	<a href="/adddesigner">Add a new designer</a>
+	

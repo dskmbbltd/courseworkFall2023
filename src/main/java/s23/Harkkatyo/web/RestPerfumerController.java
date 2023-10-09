@@ -34,9 +34,9 @@ public class RestPerfumerController {
 	
 	//PUT
 	@PutMapping(value="/rest/perfumers/{perfumerId}")
-	Perfumer editPerfumer(@PathVariable Long perfumerId, @RequestBody Perfumer ePerfumer) {
-		ePerfumer.setPerfumerId(perfumerId);
-		return perfRepository.save(ePerfumer);
+	Perfumer editPerfumer(@PathVariable Long perfumerId, @RequestBody Perfumer editablePerfumer) {
+		editablePerfumer.setPerfumerId(perfumerId);
+		return perfRepository.save(editablePerfumer);
 	}
 	
 	//DELETE

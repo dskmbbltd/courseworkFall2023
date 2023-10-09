@@ -15,11 +15,14 @@
 
 	<a href="/designerlist">View all designers</a>
 	<a href="/perfumerlist">View all perfumers</a>
+	<!-- ONLY ADMIN LEVEL -->
 	<a sec:authorize="hasAuthority('ADMIN')" href="/addperfume">Add
 		Perfume</a>
 	<a sec:authorize="hasAuthority('ADMIN')" href="/adddesigner">Add a
 		new designer</a>
-
+	<a sec:authorize="hasAuthority('ADMIN')" href="/addperfumer">Add
+		Perfumer</a>
+	
 
 	<h1>Perfumes</h1>
 	<table>
@@ -44,7 +47,7 @@
 			<td sec:authorize="hasAuthority('ADMIN')"><a
 				th:href="@{/edit/{id}(id=${perfume.perfumeId})}">Edit</a></td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a
-				th:href="@{/edit2/{id}(id=${perfume.perfumeId})}">Add perfumer</a></td>
+				th:href="@{/edit2/{id}(id=${perfume.perfumeId})}">Add perfumer to this perfume</a></td>
 		</tr>
 	</table>
 

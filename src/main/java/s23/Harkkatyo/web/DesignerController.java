@@ -56,7 +56,7 @@ public class DesignerController {
 		}
 		
 		dRepository.save(designer);
-		return "redirect:perfumelist";
+		return "redirect:designerlist";
 		
 	}
 	
@@ -85,7 +85,7 @@ public class DesignerController {
 		}
 		
 		dRepository.save(designer);
-		return "redirect:../perfumelist";
+		return "redirect:../designerlist";
 	}
 	
 }

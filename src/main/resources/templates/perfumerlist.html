@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Perfumers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<a href="/perfumelist">View all perfumes</a>
+	<a href="/designerlist">View all designers</a>
+	<a href="/addperfume">Add Perfume</a>
+	<a href="/adddesigner">Add a new designer</a>
+	<a href="/addperfumer">Add a new perfumer</a>
+	<h1>Perfumers</h1>
+	<table>
+		<tr>
+			<th>Perfumer Name</th>
+		</tr>
+		<tr th:each="perfumer : ${perfumers}">
+			<td th:text="${perfumer.perfumerName}"></td>
+			<td><a th:href="@{/deleteperfumer/{id}(id=${perfumer.perfumerId})}">Delete</a></td>
+			<td><a th:href="@{/editperfumer/{id}(id=${perfumer.perfumerId})}">Edit</a></td>
+		</tr>
+	</table>
+	
+</body>
+</html>
