@@ -23,7 +23,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Perfume {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long perfumeId;
 	@NotEmpty(message = "Name must be provided")
 	@Size( min = 1, max = 200)
@@ -50,6 +50,11 @@ public class Perfume {
 	public Perfume() {
 		
 	}
+	
+	public Perfume(String perfumeName) {
+		this.perfumeName = perfumeName;
+	}
+
 	
 	public Perfume(String perfumeName, Designer designer) {
 		this.perfumeName = perfumeName;

@@ -17,7 +17,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Perfumer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long perfumerId;
 	
 	@NotEmpty(message = "Perfumer name must be provided")

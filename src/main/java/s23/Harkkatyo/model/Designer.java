@@ -17,7 +17,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Designer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long designerId;
 	@NotEmpty(message = "Designer name must be provided")
 	@Size( min = 1, max = 200)
