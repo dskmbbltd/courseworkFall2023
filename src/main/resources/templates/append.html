@@ -15,6 +15,7 @@
 		  	<label for="perfumeName">Perfume Name</label><br>
 			<input type="text" id="perfumeName" th:field="*{perfumeName}" readonly/>
 			<div th:if="${#fields.hasErrors('perfumeName')}" th:errors="*{perfumeName}">Error</div>
+			<!-- HIDDEN INFO START -->
 			<select id="genderSpec" th:field="*{genderSpec}" class="form-control" hidden="hidden">
 			<option value="U">U</option>
 			<option value="M">M</option>
@@ -26,6 +27,7 @@
 			<input type="number" step="1" id="publicationYear" th:field="*{publicationYear}" hidden/>
 			<div th:if="${#fields.hasErrors('publicationYear')}" th:errors="*{publicationYear}">Error</div>
 			<div style="clear: both; display: block; height: 10px;"></div>
+			<!-- HIDDEN INFO END -->
 			<label for="designers">Designer</label><br>
 			 <select id="designlist" th:field="*{designer}" class="form-control" readonly>
        			<option th:each="designer: ${designers}" th:value="${designer.designerId}" th:text="${designer.designerName}"></option>
