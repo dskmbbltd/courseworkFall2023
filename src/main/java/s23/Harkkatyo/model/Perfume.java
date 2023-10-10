@@ -1,8 +1,7 @@
 package s23.Harkkatyo.model;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
+
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -16,7 +15,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OrderBy;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

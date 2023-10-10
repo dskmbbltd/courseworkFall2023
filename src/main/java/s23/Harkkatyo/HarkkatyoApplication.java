@@ -19,6 +19,7 @@ import s23.Harkkatyo.model.PerfumerRepository;
 
 
 
+@SuppressWarnings("unused")
 @SpringBootApplication
 public class HarkkatyoApplication {
 	private static final Logger log = LoggerFactory.getLogger(HarkkatyoApplication.class);

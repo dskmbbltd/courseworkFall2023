@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
-import s23.Harkkatyo.model.Designer;
 import s23.Harkkatyo.model.Perfumer;
 import s23.Harkkatyo.model.PerfumerRepository;
 
