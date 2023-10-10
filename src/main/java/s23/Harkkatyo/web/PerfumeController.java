@@ -115,6 +115,7 @@ public class PerfumeController {
 		return "redirect:../perfumelist";
 	}
 
+	// DELETE
 	@GetMapping(value = "/delete/{perfumeId}")
 	public String deletePerfume(@PathVariable("perfumeId") Long perfumeId, Model model) {
 		pRepository.deleteById(perfumeId);

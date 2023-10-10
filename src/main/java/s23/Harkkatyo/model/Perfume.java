@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Perfume {
 	private Long perfumeId;
 	@NotEmpty(message = "Name must be provided")
 	@Size( min = 1, max = 200)
+	@Column(nullable=false)
 	private String perfumeName;
 	@Min(1900)
 	private int publicationYear = 1900;
@@ -119,5 +121,12 @@ public class Perfume {
 
 	public void setGenderSpec(String genderSpec) {
 		this.genderSpec = genderSpec;
+	}
+
+	@Override
+	public String toString() {
+		return "Perfume [perfumeId=" + perfumeId + ", perfumeName=" + perfumeName + ", publicationYear="
+				+ publicationYear + ", genderSpec=" + genderSpec + ", designer=" + designer + ", perfumers=" + perfumers
+				+ "]";
 	}
 }

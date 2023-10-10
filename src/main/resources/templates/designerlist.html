@@ -1,12 +1,24 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <title>Designers</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
 
 </head>
 <body>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+	<a href="/perfumelist">View all perfumes</a>
+	<a href="/perfumerlist">View all perfumers</a>
+
+	<a sec:authorize="hasAuthority('ADMIN')" href="/addperfume">Add
+		Perfume</a>
+	<a sec:authorize="hasAuthority('ADMIN')" href="/adddesigner">Add a
+		new designer</a>
 	<h1>Designers</h1>
 	<table>
 		<tr>
@@ -14,12 +26,12 @@
 		</tr>
 		<tr th:each="designer : ${designers}">
 			<td th:text="${designer.designerName}"></td>
-			<td><a th:href="@{/deletedesigner/{id}(id=${designer.designerId})}">Delete</a></td>
-			<td><a th:href="@{/editdesigner/{id}(id=${designer.designerId})}">Edit</a></td>
+			<td><a sec:authorize="hasAuthority('ADMIN')"
+				th:href="@{/deletedesigner/{id}(id=${designer.designerId})}">Delete</a></td>
+			<td><a sec:authorize="hasAuthority('ADMIN')"
+				th:href="@{/editdesigner/{id}(id=${designer.designerId})}">Edit</a></td>
 		</tr>
 	</table>
-	<a href="/perfumelist">View all perfumes</a>
-	<a href="/addperfume">Add Perfume</a>
-	<a href="/adddesigner">Add a new designer</a>
+
 </body>
 </html>

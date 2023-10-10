@@ -21,7 +21,7 @@ public class Designer {
 	private Long designerId;
 	@NotEmpty(message = "Designer name must be provided")
 	@Size( min = 1, max = 200)
-	@Column(unique=true)
+	@Column(unique=true, nullable=false)
 	private String designerName;
 	
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="designer")

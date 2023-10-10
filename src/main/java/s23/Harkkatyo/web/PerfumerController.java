@@ -66,4 +66,11 @@ public class PerfumerController {
 		perRepository.save(perfumer);
 		return "redirect:../perfumerlist";
 	}
+	
+	//DELETE
+	@GetMapping(value = "/deleteperfumer/{perfumerId}")
+	public String deletePerfumer(@PathVariable("perfumerId") Long perfumerId, Model model) {
+		perRepository.deleteById(perfumerId);
+		return "redirect:../perfumerlist";
+	}
 }

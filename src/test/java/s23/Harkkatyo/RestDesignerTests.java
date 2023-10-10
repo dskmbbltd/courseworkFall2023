@@ -16,9 +16,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.transaction.Transactional;
 import s23.Harkkatyo.model.Designer;
+import s23.Harkkatyo.model.DesignerRepository;
+import s23.Harkkatyo.model.Perfume;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -29,6 +32,9 @@ public class RestDesignerTests {
 	private MockMvc mockMvc;
 	@Autowired
 	private WebApplicationContext webAppContext;
+	
+	@Autowired
+	private DesignerRepository dRepository;
 	
 	@BeforeEach
 	public void setUp() {
@@ -58,6 +64,20 @@ public class RestDesignerTests {
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
 	}
+	
+	Designer totest = new Designer("testinimi");
+	@Test
+	@Transactional
+	public void putWorks() throws Exception {
+		totest.setDesignerName("changed");
+		dRepository.save(totest);
+		mockMvc.perform(put("/rest/perfumes/"+totest.getDesignerId().toString())
+		.content(asJsonString(totest))
+		.contentType(MediaType.APPLICATION_JSON)
+		.accept(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk());
+	}
+	
 	
 	
 	public static String asJsonString(final Object obj) throws JsonProcessingException {

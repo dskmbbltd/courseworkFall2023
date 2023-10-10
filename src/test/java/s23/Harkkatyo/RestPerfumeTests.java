@@ -16,9 +16,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.transaction.Transactional;
 import s23.Harkkatyo.model.Perfume;
+import s23.Harkkatyo.model.PerfumeRepository;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -29,6 +31,9 @@ public class RestPerfumeTests {
 	private MockMvc mockMvc;
 	@Autowired
 	private WebApplicationContext webAppContext;
+	
+	@Autowired
+	private PerfumeRepository pRepository;
 	
 	@BeforeEach
 	public void setUp() {
@@ -58,6 +63,21 @@ public class RestPerfumeTests {
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
 	}
+	
+	Perfume totest = new Perfume("testinimi");
+	@Test
+	@Transactional
+	public void putWorks() throws Exception {
+		totest.setPerfumeName("changed");
+		pRepository.save(totest);
+		mockMvc.perform(put("/rest/perfumes/"+totest.getPerfumeId().toString())
+		.content(asJsonString(totest))
+		.contentType(MediaType.APPLICATION_JSON)
+		.accept(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk());
+	}
+	
+	
 	
 	
 	public static String asJsonString(final Object obj) throws JsonProcessingException {

@@ -9,7 +9,7 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid", nullable = false, updatable = false)
-    private Long userid;
+    private Long userId;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -34,11 +34,11 @@ public class AppUser {
 	
 	//GET SET
 	public Long getuserId() {
-		return userid;
+		return userId;
 	}
 
-	public void setuserId(Long userid) {
-		this.userid = userid;
+	public void setuserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {

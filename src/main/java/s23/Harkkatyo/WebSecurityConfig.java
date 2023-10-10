@@ -28,6 +28,8 @@ public class WebSecurityConfig {
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 	http
 	.authorizeHttpRequests( authorize -> authorize.requestMatchers(antMatcher("/rest/**")).permitAll() //postman testausta varten
+	.requestMatchers(antMatcher("/add**")).hasAuthority("ADMIN")
+	.requestMatchers(antMatcher("/edit**")).hasAuthority("ADMIN")
 	.anyRequest().authenticated())
 	.headers(headers -> headers.frameOptions(frameOptions -> frameOptions // h2
 			.disable()

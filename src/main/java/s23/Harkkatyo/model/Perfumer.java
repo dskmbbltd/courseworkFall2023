@@ -6,6 +6,7 @@ import java.util.HashSet;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Perfumer {
 	
 	@NotEmpty(message = "Perfumer name must be provided")
 	@Size( min = 1, max = 200)
+	@Column(nullable = false)
 	private String perfumerName;
 	
 	public Perfumer() {
