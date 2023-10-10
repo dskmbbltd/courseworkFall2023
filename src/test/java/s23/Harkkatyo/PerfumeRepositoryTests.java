@@ -26,10 +26,9 @@ public class PerfumeRepositoryTests {
 	@Autowired
 	private PerfumeRepository pRepository;
 	
-//	private DesignerRepository dRepository;
+
 	@BeforeEach
 	public void setUp() {
-//		Designer desi1 = new Designer("TestDesi");
 		Perfume perf1 = new Perfume("a");
 		Perfume perf2 = new Perfume("b");
 
