@@ -10,4 +10,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface PerfumerRepository extends CrudRepository<Perfumer, Long> {
 	
 	Set<Perfumer> findAllByPerfumerName(String perfumerName);
+	Perfumer findOneByPerfumerName(String perfumerName);
 }
