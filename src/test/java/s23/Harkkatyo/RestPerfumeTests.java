@@ -14,6 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.transaction.Transactional;
 import s23.Harkkatyo.model.Perfume;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -47,6 +48,7 @@ public class RestPerfumeTests {
 	}
 	
 	@Test
+	@Transactional
 	public void postWorks() throws Exception {
 		Perfume testperf = new Perfume("testi");
 		
@@ -56,6 +58,7 @@ public class RestPerfumeTests {
 		.accept(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
 	}
+	
 	
 	public static String asJsonString(final Object obj) throws JsonProcessingException {
 	        return new ObjectMapper().writeValueAsString(obj);
