@@ -65,11 +65,11 @@ public class RestDesignerTests {
 		.andExpect(status().isOk());
 	}
 	
-	Designer totest = new Designer("testinimi");
+	
 	@Test
 	@Transactional
 	public void putWorks() throws Exception {
-		totest.setDesignerName("changed");
+		Designer totest = new Designer("testinimi");
 		dRepository.save(totest);
 		mockMvc.perform(put("/rest/perfumes/"+totest.getDesignerId().toString())
 		.content(asJsonString(totest))
