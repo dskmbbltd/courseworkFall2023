@@ -36,13 +36,15 @@
     		</select>
     		<div th:if="${#fields.hasErrors('designer')}" th:errors="*{designer}">Error</div>
     		<div style="clear: both; display: block; height: 10px;"></div>
-    		
+    		<h4>Currently listed perfumers:</h4>
+    		<table>
+    		<tr th:object="${perfume}" th:each="perfumer: ${existingPerfumers}">
+    		<td th:text="${perfumer.perfumerName}">
+    		<td><a th:href="@{'remove/' + ${perfume.get().perfumeId} +'/'+${perfumer.perfumerId}}">Remove this perfumer from this perfume</a></td>
+    		</table>
 			
-			<h4>Currently listed perfumers:</h4>
-			<p id="existingPerfumers" th:each="perfumer: ${existingPerfumers}" th:text="${perfumer.perfumerName}"></p>
 			
-			
-			<h3>Edit perfumers, duplicate perfumers will be ignored</h3>
+			<h3>Edit perfumers, duplicate perfumers will be ignored<br>*Overwrites the existing set*</h3>
 			
 			<!-- Show dropdowns for perfumers -->
     		<label for="perfumers">Perfumer 1</label>

@@ -40,7 +40,8 @@
 			<!--  Populate all perfumers -->
 			<td><span th:if="${perfume.getPerfumers} != null"
 				th:each="perfumerList : ${perfume.getPerfumers}"
-				th:utext="${perfumerList.perfumerName} + '<br>'"></span></td>
+				th:utext="'*'+${perfumerList.perfumerName} + '*<br>'"></span></td>
+				
 			<td th:text="${perfume.publicationYear}"></td>
 			<td th:text="${perfume.genderSpec}"></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a

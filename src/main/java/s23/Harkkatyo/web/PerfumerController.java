@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
+import s23.Harkkatyo.model.Perfume;
+import s23.Harkkatyo.model.PerfumeRepository;
 import s23.Harkkatyo.model.Perfumer;
 import s23.Harkkatyo.model.PerfumerRepository;
 
@@ -18,6 +20,8 @@ public class PerfumerController {
 	
 	@Autowired
 	private PerfumerRepository perRepository;
+	@Autowired
+	private PerfumeRepository pRepository;
 	
 	// LISTING OF ALL PERFUMERS
 	@GetMapping("perfumerlist")
@@ -69,7 +73,11 @@ public class PerfumerController {
 	//DELETE
 	@GetMapping(value = "/deleteperfumer/{perfumerId}")
 	public String deletePerfumer(@PathVariable("perfumerId") Long perfumerId, Model model) {
-		perRepository.deleteById(perfumerId);
+		Perfumer todel = perRepository.findById(perfumerId).orElseThrow();
+		for (Perfume perfume : todel.getPerfumes()) {
+			perfume.getPerfumers().remove(todel);
+		}
+        perRepository.deleteById(perfumerId);
 		return "redirect:../perfumerlist";
 	}
 }

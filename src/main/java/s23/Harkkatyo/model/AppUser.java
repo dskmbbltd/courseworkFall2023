@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="UserTable")
+@Table(name="users")
 public class AppUser {
 
     @Id
@@ -21,19 +21,22 @@ public class AppUser {
 
     @Column(name = "password", nullable = false)
     private String passwordHash;
-
-    @Column(name = "role", nullable = false)
-    private String role;
+    
+    
+    // admin/user tasot
+    @Column(name = "authority", nullable = false)
+    private String authority;
     
     //CONSTR
     public AppUser() {
     }
 
-	public AppUser(String username, String passwordHash, String role) {
-		super();
+    
+    
+	public AppUser(String username, String passwordHash, String authority) {
 		this.username = username;
 		this.passwordHash = passwordHash;
-		this.role = role;
+		this.authority = authority;
 	}
 	
 	
@@ -62,12 +65,12 @@ public class AppUser {
 		this.passwordHash = passwordHash;
 	}
 
-	public String getRole() {
-		return role;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 }

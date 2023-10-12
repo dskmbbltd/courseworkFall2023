@@ -116,4 +116,16 @@ public class PerfumeController {
 		pRepository.deleteById(perfumeId);
 		return "redirect:../perfumelist";
 	}
+	
+	// REMOVE PERFUMER FROM PERFUME
+	@GetMapping(value ="/edit/remove/{perfumeId}/{perfumerId}")
+	public String removePerfumerfromPerfumer(@PathVariable("perfumerId") Long perfumerId, @PathVariable("perfumeId") Long perfumeId, Model model) {
+		Perfume fromthisperfume = pRepository.findById(perfumeId).orElseThrow();
+		Perfumer thisperfumer = perRepository.findById(perfumerId).orElseThrow();
+		fromthisperfume.removePerfumer(thisperfumer);
+		pRepository.save(fromthisperfume);		
+		
+		return "redirect:/perfumelist";
+	}
+	
 }

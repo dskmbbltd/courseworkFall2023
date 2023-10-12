@@ -72,6 +72,11 @@ public class Perfume {
         perfumer.getPerfumes().add(this);
     }
 	
+    public void removePerfumer(Perfumer perfumer) {
+    	perfumers.remove(perfumer);
+    	perfumer.getPerfumes().remove(this);
+    }
+    
 	//GET SET
 	public String getPerfumeName() {
 		return perfumeName;
@@ -120,6 +125,8 @@ public class Perfume {
 	public void setGenderSpec(String genderSpec) {
 		this.genderSpec = genderSpec;
 	}
+	
+	
 
 	@Override
 	public String toString() {
