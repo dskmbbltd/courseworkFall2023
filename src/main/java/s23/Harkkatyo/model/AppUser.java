@@ -10,27 +10,22 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="users")
 public class AppUser {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userid", nullable = false, updatable = false)
+    @Column(name ="userid", nullable=false)
     private Long userId;
-
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(nullable=false, unique=true)
     private String username;
-
-    @Column(name = "password", nullable = false)
+    @Column(name="password", nullable=false)
     private String passwordHash;
     
-    
     // admin/user tasot
-    @Column(name = "authority", nullable = false)
+    @Column(name="authority", nullable=false)
     private String authority;
     
     //CONSTR
     public AppUser() {
     }
-
     
     
 	public AppUser(String username, String passwordHash, String authority) {
@@ -38,7 +33,6 @@ public class AppUser {
 		this.passwordHash = passwordHash;
 		this.authority = authority;
 	}
-	
 	
 	//GET SET
 	public Long getuserId() {
