@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `designer_seq` (
 
 -- Dumping data for table perfumedatabase.designer_seq: ~1 rows (suunnilleen)
 INSERT INTO `designer_seq` (`next_not_cached_value`, `minimum_value`, `maximum_value`, `start_value`, `increment`, `cache_size`, `cycle_option`, `cycle_count`) VALUES
-	(50001, 1, 9223372036854775806, 1, 50, 1000, 0, 0);
+	(100001, 1, 9223372036854775806, 1, 50, 1000, 0, 0);
 
 -- Dumping structure for taulu perfumedatabase.perfume
 CREATE TABLE IF NOT EXISTS `perfume` (
@@ -64,16 +64,17 @@ CREATE TABLE IF NOT EXISTS `perfume` (
   CONSTRAINT `FK3iy3hjf7rkthmhut6dvtr2dtd` FOREIGN KEY (`designer_id`) REFERENCES `designer` (`designer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table perfumedatabase.perfume: ~8 rows (suunnilleen)
+-- Dumping data for table perfumedatabase.perfume: ~9 rows (suunnilleen)
 INSERT INTO `perfume` (`gender_spec`, `publication_year`, `designer_id`, `perfume_id`, `perfume_name`) VALUES
 	('U', 1900, 1, 1, 'Luna Rossa'),
-	('U', 1900, 2, 2, 'Ambra'),
 	('F', 2001, 56, 52, 'Coco Mademoiselle'),
 	('M', 2010, 56, 53, 'Bleu de Chanel'),
 	('U', 2006, 2, 54, 'Acqua di Parma Blu Mediterraneo - Fico di Amalfi'),
 	('F', 2001, 57, 55, 'Light Blue'),
 	('F', 2006, 57, 152, 'The One'),
-	('U', 2017, 102, 153, 'You Or Someone Like You');
+	('U', 2017, 102, 153, 'You Or Someone Like You'),
+	('M', 1900, 2, 50202, 'Oud'),
+	('U', 1900, 2, 50302, 'ffff');
 
 -- Dumping structure for taulu perfumedatabase.perfumer
 CREATE TABLE IF NOT EXISTS `perfumer` (
@@ -86,11 +87,10 @@ CREATE TABLE IF NOT EXISTS `perfumer` (
 INSERT INTO `perfumer` (`perfumer_id`, `perfumer_name`) VALUES
 	(1, 'Daniela Andrier'),
 	(2, 'François Demachy'),
-	(3, 'Beta'),
 	(52, 'Jacques Polge'),
-	(102, 'Christine Nagel'),
 	(103, 'Caroline Sabas'),
-	(602, 'Testinenä');
+	(50104, 'Christine Nagel'),
+	(50154, 'TestPerfumer');
 
 -- Dumping structure for taulu perfumedatabase.perfumer_seq
 CREATE TABLE IF NOT EXISTS `perfumer_seq` (
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `perfumer_seq` (
 
 -- Dumping data for table perfumedatabase.perfumer_seq: ~1 rows (suunnilleen)
 INSERT INTO `perfumer_seq` (`next_not_cached_value`, `minimum_value`, `maximum_value`, `start_value`, `increment`, `cache_size`, `cycle_option`, `cycle_count`) VALUES
-	(50001, 1, 9223372036854775806, 1, 50, 1000, 0, 0);
+	(100001, 1, 9223372036854775806, 1, 50, 1000, 0, 0);
 
 -- Dumping structure for taulu perfumedatabase.perfume_perfumer
 CREATE TABLE IF NOT EXISTS `perfume_perfumer` (
@@ -126,10 +126,9 @@ INSERT INTO `perfume_perfumer` (`perfume_id`, `perfumer_id`) VALUES
 	(53, 52),
 	(54, 2),
 	(55, 2),
-	(152, 102),
 	(153, 103),
 	(702, 2),
-	(702, 3);
+	(50302, 1);
 
 -- Dumping structure for taulu perfumedatabase.perfume_seq
 CREATE TABLE IF NOT EXISTS `perfume_seq` (
@@ -145,20 +144,20 @@ CREATE TABLE IF NOT EXISTS `perfume_seq` (
 
 -- Dumping data for table perfumedatabase.perfume_seq: ~1 rows (suunnilleen)
 INSERT INTO `perfume_seq` (`next_not_cached_value`, `minimum_value`, `maximum_value`, `start_value`, `increment`, `cache_size`, `cycle_option`, `cycle_count`) VALUES
-	(50001, 1, 9223372036854775806, 1, 50, 1000, 0, 0);
+	(100001, 1, 9223372036854775806, 1, 50, 1000, 0, 0);
 
--- Dumping structure for taulu perfumedatabase.user_table
-CREATE TABLE IF NOT EXISTS `user_table` (
+-- Dumping structure for taulu perfumedatabase.users
+CREATE TABLE IF NOT EXISTS `users` (
   `userid` bigint(20) NOT NULL AUTO_INCREMENT,
   `password` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL,
+  `authority` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   PRIMARY KEY (`userid`),
   UNIQUE KEY `UK_en3wad7p8qfu8pcmh62gvef6v` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table perfumedatabase.user_table: ~2 rows (suunnilleen)
-INSERT INTO `user_table` (`userid`, `password`, `role`, `username`) VALUES
+-- Dumping data for table perfumedatabase.users: ~2 rows (suunnilleen)
+INSERT INTO `users` (`userid`, `password`, `authority`, `username`) VALUES
 	(1, '$2a$10$OFBvfxQTiXtNR9RUT/6PXO7m6iuHAT9S134eHFTYB5xcMLYPAUyFO', 'USER', 'user'),
 	(2, '$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C', 'ADMIN', 'admin');
 
