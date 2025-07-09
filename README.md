@@ -1,4 +1,4 @@
-Tietokanta hajuvesikokoelmalle
+Syksyn 2023 kurssityö
 
 DB: MariaDB  
 SQL tiedot dump.sql tiedostossa  
